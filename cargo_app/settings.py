@@ -45,9 +45,11 @@ INSTALLED_APPS = [
     'calculator',
     'rest_framework',
     'rest_framework.authtoken',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -158,6 +160,7 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.AllowAny',
     ),
 }
 
@@ -168,3 +171,5 @@ CSRF_TRUSTED_ORIGINS = [
     'http://cargo-app.zulfahmidev.com',
     'https://cargo-app.zulfahmidev.com',
 ]
+
+CORS_ALLOWED_ORIGINS = ["http://localhost:3000"]
