@@ -7,7 +7,7 @@
         <h2 class="text-2xl font-bold">Country List</h2>
         <div class="">
             <form class="inline-block">
-                <input type="text" placeholder="Search countries..." class="py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500" name="search" value="{{ request.GET.search|default_if_none:'' }}" onkeyup="this.form.submit()">
+                <input type="text" placeholder="Search countries..." class="py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500" name="search" value="{{ request.GET.search|default_if_none:'' }}" onkeyup.enter="this.form.submit()">
             </form>
             <a href="{% url 'country.create' %}" class="bg-blue-500 text-white px-3 py-3 rounded hover:bg-blue-600">Add Country</a>
         </div>

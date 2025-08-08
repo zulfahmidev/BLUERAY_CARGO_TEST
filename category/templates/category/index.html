@@ -7,7 +7,7 @@
         <a href="{% url 'country.index' %}" class="text-blue-500 hover:underline">Back to Country List</a>
         <div class="">
             <form class="inline-block">
-                <input type="text" placeholder="Search categories..." class="py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500" name="search" value="{{ request.GET.search|default_if_none:'' }}" onkeyup="this.form.submit()">
+                <input type="text" placeholder="Search categories..." class="py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500" name="search" value="{{ request.GET.search|default_if_none:'' }}" onkeyup.enter="this.form.submit()">
             </form>
             <a href="{% url 'category.create' country.id %}" class="bg-blue-500 text-white px-3 py-3 rounded hover:bg-blue-600">Add Category</a>
         </div>
