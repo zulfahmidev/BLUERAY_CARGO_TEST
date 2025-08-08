@@ -14,14 +14,20 @@ API Blueray Cargo untuk mengambil daftar negara, kategori, destinasi dan menghit
 https:://cargo-app.zulfahmidev.com/api
 ```
 
+**Contoh akun yang sudah tersedia**
+|Email|Password|
+|--|--|
+|admin@example.com|password|
+
+
 ### POST | /token
 Membuat akses token yang dapat digunakan untuk autentikasi saat menggunai API
 
 **Body:**
-```properties
-email: admin@example.com
-password: password
-```
+|key|type|description|
+|--|--|--|
+|email|text|email anda (contoh: admin@example.com)|
+|password|text|password anda (contoh: password)|
 
 **Response:**
 ```json
@@ -44,9 +50,9 @@ curl --location 'https://cargo-app.zulfahmidev.com/api/token' \
 Memperbarui akses token yang dapat digunakan untuk autentikasi saat menggunai API
 
 **Body:**
-```properties
-refresh: <refresh-token>
-```
+|key|type|description|
+|--|--|--|
+|refresh|text|refresh token anda|
 
 **Response:**
 ```json
@@ -127,7 +133,8 @@ Authorization: Bearer <access-token>
 |--|--|--|
 |search|text|untuk mencari daftar negara dengan judul kategori|
 |page|number|nomor halaman (setiap halaman hanya sampai 10 item)|
-|country_id|text|untuk memfilter daftar negara berdasarkan id negara yang bisa didapatkan melalui api ```/countries```|
+|country_id|text|untuk memfilter daftar negara berdasarkan id negara yang bisa didapatkan melalui api daftar negara|
+
 **Response:**
 ```json
 {
