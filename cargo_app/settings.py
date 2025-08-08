@@ -160,3 +160,11 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ),
 }
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.a.run.app',
+    'https://nama-layanan-unik.a.run.app',
+    'http://localhost:8000',
+    'http://cargo-app.zulfahmidev.com',
+    'https://cargo-app.zulfahmidev.com',
+]
