@@ -6,6 +6,11 @@ Hai, saya Zulfahmi. Ini merupakan hasil dari teknikal tes saya di Blueray Cargo.
 - Result Web Blueray Cargo: [https://cargo-app.zulfahmidev.com](https://cargo-app.zulfahmidev.com)
 - API Blueray Cargo: [https://cargo-app.zulfahmidev.com/api](https://cargo-app.zulfahmidev.com/api)
 
+**Contoh akun yang sudah tersedia**
+|Email|Password|
+|--|--|
+|admin@example.com|password|
+
 ## API Documentation
 API Blueray Cargo untuk mengambil daftar negara, kategori, destinasi dan menghitung biaya pengiriman.
 
@@ -13,12 +18,6 @@ API Blueray Cargo untuk mengambil daftar negara, kategori, destinasi dan menghit
 ```
 https:://cargo-app.zulfahmidev.com/api
 ```
-
-**Contoh akun yang sudah tersedia**
-|Email|Password|
-|--|--|
-|admin@example.com|password|
-
 
 ### POST | /token
 Membuat akses token yang dapat digunakan untuk autentikasi saat menggunai API
