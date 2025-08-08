@@ -1,0 +1,27 @@
+{% extends "layouts/auth.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+    <h2 class="text-3xl my-2 font-bold">BLUERAY CARGO</h2>
+    <p class="mb-4 text-sm text-gray-700">Welcome back! Please sign in to your account.</p>
+    <form method="post" class="space-y-4">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Email" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 m-0 mt-3">
+        {% if form.username.errors %}
+            {% for error in form.username.errors %}
+                <p class="text-red-500 text-sm m-0 mt-1">{{ error }}</p>
+            {% endfor %}
+        {% endif %}
+
+        <input type="password" name="password" placeholder="Password" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 m-0 mt-3">
+        {% if form.password.errors %}
+            {% for error in form.password.errors %}
+                <p class="text-red-500 text-sm m-0 mt-1">{{ error }}</p>
+            {% endfor %}
+        {% endif %}
+
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 mt-3 rounded hover:bg-blue-600 w-full cursor-pointer">Login</button>
+    </form>
+    <p class="mt-4 text-sm text-gray-600">Don't have an account? <a href="{% url 'register' %}" class="text-blue-500 hover:underline">Register here</a></p>
+{% endblock %}

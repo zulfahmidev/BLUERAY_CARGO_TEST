@@ -1,0 +1,68 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Country List{% endblock %}
+
+{% block content %}
+    <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-bold">Country List</h2>
+        <div class="">
+            <form class="inline-block">
+                <input type="text" placeholder="Search countries..." class="py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500" name="search" value="{{ request.GET.search|default_if_none:'' }}" onkeyup="this.form.submit()">
+            </form>
+            <a href="{% url 'country.create' %}" class="bg-blue-500 text-white px-3 py-3 rounded hover:bg-blue-600">Add Country</a>
+        </div>
+    </div>
+    <table class="min-w-full bg-white">
+        <thead>
+            <tr class="w-full bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                <th class="py-3 px-6 text-left">#</th>
+                <th class="py-3 px-6 text-left">Flag</th>
+                <th class="py-3 px-6 text-left">Name</th>
+                <th class="py-3 px-6 text-left">Currency</th>
+                <th class="py-3 px-6 text-left">Action</th>
+            </tr>
+        </thead>
+        <tbody class="text-gray-600 text-sm font-light">
+            {% for country in countries %}
+            <tr class="border-b border-gray-200 even:bg-gray-100">
+                <td class="py-3 px-6 text-left">
+                    {{ forloop.counter }}
+                </td>
+                <td class="py-3 px-6 text-left">
+                    <img src="/media/{{ country.country_flag }}" class="h-8" alt="Flag" class="inline-block">
+                </td>
+                <td class="py-3 px-6 text-left">{{ country.country_name }}</td>
+                <td class="py-3 px-6 text-left">{{ country.country_currency }}</td>
+                <td class="py-3 px-6 text-left">
+                    <a href="{% url 'category.index' country.id %}" class="inline-block bg-green-500 text-white py-1 px-2 rounded">Category</a>
+                    <a href="{% url 'country.edit' country.id %}" class="inline-block bg-blue-500 text-white py-1 px-2 rounded">Edit</a>
+                    <form action="{% url 'country.delete' country.id %}" method="post" class="inline-block">
+                        {% csrf_token %}
+                        <input type="hidden" name="country_id" value="{{ country.id }}">
+                        <button type="submit" class="bg-red-500 text-white py-1 px-2 rounded cursor-pointer" onclick="return confirm('Are you sure you want to delete?')">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% empty %}
+            <tr class="border-b border-gray-200 even:bg-gray-100">
+                <td colspan="5" class="py-3 px-6 text-center">No countries available</td>
+            </tr>
+            {% endfor %}
+            <!-- Add more rows as needed -->
+        </tbody>
+    </table>
+
+    <div class="mt-6 flex items-center gap-3 mx-auto mr-0 w-fit">
+        {% if countries.has_previous %}
+            <a class="py-2 px-3 bg-blue-500 text-white rounded" href="?page=1">First</a>
+            <a class="py-2 px-3 bg-blue-500 text-white rounded" href="?page={{ countries.previous_page_number }}">Previous</a>
+        {% endif %}
+
+        <span>Page {{ countries.number }} of {{ countries.paginator.num_pages }}</span>
+
+        {% if countries.has_next %}
+            <a class="py-2 px-3 bg-blue-500 text-white rounded" href="?page={{ countries.next_page_number }}">Next</a>
+            <a class="py-2 px-3 bg-blue-500 text-white rounded" href="?page={{ countries.paginator.num_pages }}">Last</a>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "layouts/auth.html" %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+    <h2 class="text-3xl my-2 font-bold">BLUERAY CARGO</h2>
+    <p class="mb-4 text-sm text-gray-700">Create your account by filling in the details below.</p>
+    
+    <form method="post" class="space-y-4">
+        {% csrf_token %}
+
+        <!-- Username -->
+        <input type="text" name="email" value="{{ form.email.value|default_if_none:'' }}" placeholder="Email"
+               class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+        {% for error in form.email.errors %}
+            <p class="text-red-500 text-sm">{{ error }}</p>
+        {% endfor %}
+
+        <!-- Password 1 -->
+        <input type="password" name="password1" placeholder="Password"
+               class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+        {% for error in form.password1.errors %}
+            <p class="text-red-500 text-sm">{{ error }}</p>
+        {% endfor %}
+
+        <!-- Password 2 -->
+        <input type="password" name="password2" placeholder="Confirm Password"
+               class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+        {% for error in form.password2.errors %}
+            <p class="text-red-500 text-sm">{{ error }}</p>
+        {% endfor %}
+
+        <button type="submit"
+                class="bg-blue-500 text-white px-4 py-2 mt-3 rounded hover:bg-blue-600 w-full cursor-pointer">
+            Register
+        </button>
+    </form>
+
+    <p class="mt-4 text-sm text-gray-600">
+        Already have an account? <a href="{% url 'login' %}" class="text-blue-500 hover:underline">Login here</a>
+    </p>
+{% endblock %}
