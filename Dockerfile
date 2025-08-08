@@ -10,4 +10,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . /app/
 
-CMD gunicorn myproject.wsgi:application --bind 0.0.0.0:8080
+CMD gunicorn cargo_app.wsgi:application --bind 0.0.0.0:$PORT
